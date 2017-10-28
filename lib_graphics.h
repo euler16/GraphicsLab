@@ -28,6 +28,12 @@ public:
     int x,y,z;
     Point3D(int i=0,int j=0,int k=0):x(i),y(j),z(k){}
     Point3D mul(const Point3D& P, const float& t);
+    void set(int x,int y,int z)
+    {
+        this->x=x;
+        this->y=y;
+        this->z=z;
+    }
 };
 
 void matmul(float A[][10],float B[][10],float C[][10],int A_r,int A_c,int B_r,int B_c);
@@ -55,7 +61,7 @@ Point3D rotate3DZ(const Point3D& P, float angle);
 
 // Point 2D class definations
 Point2D Point2D::mul(const Point2D& P,const float& t)
-{  
+{
     return Point2D(P.x*t,P.y*t);
 }
 
@@ -63,7 +69,7 @@ Point2D Point2D::mul(const Point2D& P,const float& t)
 
 // Point 3D class definations
 Point3D Point3D::mul(const Point3D& P,const float& t)
-{  
+{
     return Point3D(P.x*t,P.y*t,P.z*t);
 }
 
@@ -97,7 +103,7 @@ Point3D move3D(const Point3D& P,int dx,int dy, int dz)
 // Matrix version
 void rotate2D(float A[2][10],float trans[][10],float angle,int c)
 {
-    
+
     // c is the number of column vectors in A
     // not working
     float x = TORADIAN(angle);
@@ -166,7 +172,7 @@ void draw_herm(const Point3D& s1,const Point3D& s1_,const Point3D& s4,const Poin
 		s1_coef = t*t*t - 2*t*t + t;
 		s4coef = -2 * t*t*t + 3*t*t;
 		s4_coef = t*t*t - t*t;
-	
+
 		a.x = s1.x*s1coef + s1_.x*s1_coef + s4.x*s4coef + s4_.x*s4_coef;
 		a.y = s1.y*s1coef + s1_.y*s1_coef + s4.y*s4coef + s4_.y*s4_coef;
 		putpixel(a.x,a.y,1);
