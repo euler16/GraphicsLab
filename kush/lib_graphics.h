@@ -44,8 +44,9 @@ public:
 };
 
 class Bezier {
-    Point3D s[4];
-    int ca[4];
+    Point3D s[4]; // control points
+    int color;
+    int ca[4];    // nCr
 public:
     Bezier(Point3D a,Point3D b,Point3D c,Point3D d){
         // cout<<"in const";
@@ -57,6 +58,7 @@ public:
         ca[1] = 3;
         ca[2] = 3;
         ca[3] = 1;
+        color = 2;
     }
 
     void Draw(){
@@ -74,7 +76,7 @@ public:
             }
             // cout<<"put pixel karne waala hoon";
             // cout<<toplot.x<<" and "<<toplot.y<<endl;
-            putpixel(toplot.x,toplot.y,1);
+            putpixel(toplot.x+WINX/2,toplot.y+WINY/2,this->color);
             // putpixel(10,10,1);
             // putpixel(11,10,1);
             // putpixel(12,10,1);
@@ -85,30 +87,40 @@ public:
 
     void change(int point){
         
-            circle(s[point-1].x,s[point-1].y,5);
+            char c;
             while(true){
                 // cout<<"waiting for input";
-                char c;
+                // circle(s[point-1].x,s[point-1].y,5);
+                //char c;
                 cin>>c;
                 // cout<<"c is"<<c;
                 if(c == 'w'){
+                    this->color = 0;
+                    this->Draw();
                     s[point-1].y--;
-                    cleardevice();
+                    
+                    this->color = 2;
                     this->Draw();
                 }
                 else if(c == 'a'){
+                    this->color = 0;
+                    this->Draw();
                     s[point-1].x--;
-                    cleardevice();
+                    this->color = 2;
                     this->Draw();
                 }
                 else if(c == 'd'){
+                    this->color = 0;
+                    this->Draw();
                     s[point-1].x++;
-                    cleardevice();
+                    this->color = 2;
                     this->Draw();
                 }
                 else if(c == 's'){
+                    this->color = 0;
+                    this->Draw();
                     s[point-1].y++;
-                    cleardevice();
+                    this->color = 2;
                     this->Draw();
                 }
                 else{
@@ -248,6 +260,8 @@ Point3D rotate3DY(const Point3D& P, float angle)
 
     return Q;
 }
+
+
 
 Point3D rotate3DZ(const Point3D& P, float angle)
 {
