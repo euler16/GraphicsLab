@@ -53,16 +53,21 @@ int main()
     initgraph(&gd,&gm,NULL);
     // FaceandNeck faceandneck;
     // faceandneck.Draw();
-    cout<<"yah";
+    //face left
     Point3D a(0,0,0);
-    Point3D b(10,100,0);
-    Point3D c(100,100,0);
-    Point3D d(100,0,0);
-    Bezier be(a,b,c,d);
-    // cout<<"bezier bana diya";
-    be.Draw();
-    // cout<<"about to call change";
-    be.change(2);
+    Point3D b(-40,14,0);
+    Point3D c(-23,62,0);
+    Point3D d(0,75,0);
+    Bezier faceleft(a,b,c,d);faceleft.Draw();
+    faceleft.change(2);
+    //face right
+
+    // a.set(101,10,0);
+    // b.set(110,31,0);
+    // c.set(115,40,0);
+    // d.set(103,50,0);
+    // Bezier faceright(a,b,c,d);faceright.Draw();
+    // faceright.change(2);
     delay(2000);
     getch();
 }
