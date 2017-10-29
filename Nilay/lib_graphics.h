@@ -42,6 +42,108 @@ public:
     void change(int);
 };
 
+class Bezier {
+    Point3D s[4]; // control points
+    int color;
+    int ca[4];    // nCr
+public:
+    Bezier(Point3D a,Point3D b,Point3D c,Point3D d){
+        // cout<<"in const";
+        this->s[0].set(a);
+        this->s[1].set(b);
+        this->s[2].set(c);
+        this->s[3].set(d);
+        ca[0] = 1;
+        ca[1] = 3;
+        ca[2] = 3;
+        ca[3] = 1;
+        color = 2;
+    }
+
+    void Draw(){
+        // cout<<"here";
+        for(float u = 0;u<=1;u+=0.01){
+            Point3D toplot(0,0,0);
+            // cout<<"inside here here";
+            for(int i =0 ;i<4;i++){
+                
+                float temp = ca[i]*(float)pow(u,i)*(float)pow(1-u,3-i);
+                // cout<<"temp"<<temp<<endl;
+                toplot.x+=s[i].x*temp;
+                toplot.y+=s[i].y*temp;
+                toplot.z+=s[i].z*temp;
+            }
+            // cout<<"put pixel karne waala hoon";
+            // cout<<toplot.x<<" and "<<toplot.y<<endl;
+            putpixel(toplot.x+WINX/2,toplot.y+WINY/2,this->color);
+            // putpixel(10,10,1);
+            // putpixel(11,10,1);
+            // putpixel(12,10,1);
+            // putpixel(13,10,1);
+            // putpixel(14,10,1);
+        }
+    }
+
+    void change(int point){
+        
+            char c;
+            while(true){
+                // cout<<"waiting for input";
+                // circle(s[point-1].x,s[point-1].y,5);
+                //char c;
+                cin>>c;
+                // cout<<"c is"<<c;
+                if(c == 'w'){
+                    this->color = 0;
+                    this->Draw();
+                    s[point-1].y--;
+                    
+                    this->color = 2;
+                    this->Draw();
+                }
+                else if(c == 'a'){
+                    this->color = 0;
+                    this->Draw();
+                    s[point-1].x--;
+                    this->color = 2;
+                    this->Draw();
+                }
+                else if(c == 'd'){
+                    this->color = 0;
+                    this->Draw();
+                    s[point-1].x++;
+                    this->color = 2;
+                    this->Draw();
+                }
+                else if(c == 's'){
+                    this->color = 0;
+                    this->Draw();
+                    s[point-1].y++;
+                    this->color = 2;
+                    this->Draw();
+                }
+                else{
+                    cout<<"enter the point number you want number";
+                    int n;
+                    cin>>n;
+                    if(n<=4&&n>=1){
+                        point = n;
+                    }else{
+
+                        cout<<endl<<endl<<"your points should be"<<endl;
+                        cout<<"a "<<s[0].x <<"   "<<s[0].y<<endl;
+                        cout<<"b "<<s[1].x <<"   "<<s[1].y<<endl;
+                        cout<<"c "<<s[2].x <<"   "<<s[2].y<<endl;
+                        cout<<"d "<<s[3].x <<"   "<<s[3].y<<endl;
+
+                        break;
+                    }
+                }
+            }
+        
+    }
+};
+
 void matmul(float A[][10],float B[][10],float C[][10],int A_r,int A_c,int B_r,int B_c);
 
 // translation
