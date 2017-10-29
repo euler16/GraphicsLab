@@ -31,6 +31,11 @@ public:
     Point3D(int i=0,int j=0,int k=0):x(i),y(j),z(k){}
     Point3D mul(const Point3D& P, const float& t);
     void set(int i=0,int j=0,int k=0){x=i,y=j,z=k;}
+    void set(Point3D d){
+        this->x = d.x;
+        this->y = d.y;
+        this->z = d.z;
+    }
 };
 
 class Hermite3D {
