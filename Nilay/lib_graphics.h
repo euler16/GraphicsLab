@@ -80,7 +80,7 @@ public:
             }
             // cout<<"put pixel karne waala hoon";
             // cout<<toplot.x<<" and "<<toplot.y<<endl;
-            putpixel(toplot.x+WINX/2,toplot.y+WINY/2,this->color);
+            putpixel(toplot.x,toplot.y,this->color);
             // putpixel(10,10,1);
             // putpixel(11,10,1);
             // putpixel(12,10,1);
@@ -374,5 +374,42 @@ void Hermite3D::change(int c)
     }
     loop_exit: ;
 }
+
+
+void plotpixel(int x,int y,int xc,int yc,int dx=320,int dy=240,int color=15) {
+    // delay(20);
+    putpixel((x + xc + dx), (dy - y - yc), color);
+    putpixel((-x + xc + dx), (dy - y - yc), color);
+    putpixel((x + xc + dx), (dy + y - yc), color);
+    putpixel((-x + xc + dx), (dy + y - yc), color);
+    putpixel((y + xc + dx), (dy - yc - x), color);
+    putpixel((-y + xc + dx), (dy - yc - x), color);
+    putpixel((y + xc + dx), (dy - yc + x), color);
+    putpixel((-y + xc + dx), (dy - yc + x), color);
+  }
+  void circle_bres(int xc,int yc,int r) {
+    // Bresenham
+    int x = 0, y = r;
+    float d = 3 - 2 * r;
+    // setcolor(RED);
+    // line(320, 0, 320, 480);
+    // setcolor(BLUE);
+    // line(0, 240, 640, 240);
+    
+    setcolor(WHITE);
+    plotpixel(x, y, xc, yc);
+    while (x <= y) {
+      if (d < 0) {
+        d += 6 + 4 * x;
+        x++;
+      } else {
+        d += 10 + 4 * (x - y);
+        x++;
+        y--;
+      }
+      plotpixel(x, y, xc, yc);
+    }
+  }
+
 
 #endif
