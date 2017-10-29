@@ -4,7 +4,6 @@
 #include <cmath>
 #include <graphics.h>
 #include<iostream>
-// #include<conio.h>
 using namespace std;
 
 #define PI 3.14159265
@@ -25,6 +24,8 @@ public:
     Point2D(int i=0,int j=0):x(i),y(j){}
     Point2D mul(const Point2D& P, const float& t);
 };
+
+
 
 class Point3D {
 public:
@@ -63,7 +64,7 @@ public:
 
     void Draw(){
         // cout<<"here";
-        for(float u = 0;u<=1;u+=0.01){
+        for(float u = 0;u<=1;u+=0.001){
             Point3D toplot(0,0,0);
             // cout<<"inside here here";
             for(int i =0 ;i<4;i++){
@@ -76,7 +77,7 @@ public:
             }
             // cout<<"put pixel karne waala hoon";
             // cout<<toplot.x<<" and "<<toplot.y<<endl;
-            putpixel(toplot.x+WINX/2,toplot.y+WINY/2,this->color);
+            putpixel(toplot.x+WINX/2,toplot.y+10,this->color);
             // putpixel(10,10,1);
             // putpixel(11,10,1);
             // putpixel(12,10,1);
@@ -124,7 +125,7 @@ public:
                     this->Draw();
                 }
                 else{
-                    cout<<"enter the point number you want number";
+                    cout<<"enter the control point u want to change";
                     int n;
                     cin>>n;
                     if(n<=4&&n>=1){
@@ -290,10 +291,6 @@ void draw_herm(const Point3D& s1,const Point3D& s1_,const Point3D& s4,const Poin
 		putpixel(a.x+WINX/4,a.y,1);
 	}
 }
-
-
-
-
 
 
 #endif

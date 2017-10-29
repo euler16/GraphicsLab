@@ -5,69 +5,91 @@
 using namespace std;
 
 
-class FaceandNeck{
-    Point3D s1,s2,s3,s4,s5,s1left_,s1right_,s2left_,s2right_,s3left_,s3right_,s2bottom_,s3bottom_,s4top_,s5top_;
-public:
-    FaceandNeck(){
-        s1.set(0,0,0); //top of face
-        s2.set(-30,250,0);//left bottom of face
-        s3.set(30,250,0);//right bottom of face
-        s4.set(-20,300,0);//left bottom of neck
-        s5.set(40,300,0);//right bottom of neck
-        s1left_.set(-400,20,0);//left face starting tangent
-        s2left_.set(5,0,0);//left face ending tangent
-        s1right_.set(400,20,0);//rigth face starting tangent
-        s3right_.set(-5,0,0);//right face ending tangent
-        s2right_.set(3,50,0);//bottom of face left tangent
-        s3left_.set(3,-50,0);//bottom of the face right tangent
-        s2bottom_.set(4,10,0);//left neck starting tangent
-        s4top_.set(-40,-50,0);//left neck ending tangent
-        s3bottom_.set(-4,10,0);
-        s5top_.set(40,50,0);
-        
-    }
-    void Draw(){
-        //face
-        draw_herm(s1,s1left_,s2,s2right_);
-        draw_herm(s1,s1right_,s3,s3right_);
-        draw_herm(s2,s2right_,s3,s3left_);
-        //neck
-        draw_herm(s2,s2bottom_,s4,s4top_);
-        draw_herm(s3,s3bottom_,s5,s5top_);
-    }
-};
-
-class UpperbodyandHand{
-    Point3D s1,s2,s3,s4,s5,s6,s7,s8,s9,s10;
-public:
-    UpperbodyandHand(){
-        s1.set(-20,300,0);//left bottom of neck
-        s2.set(40,300,0);//right bottom of neck
-        
-    }
-};
 
 int main()
 {
     int gd = DETECT, gm;
     initgraph(&gd,&gm,NULL);
-    // FaceandNeck faceandneck;
-    // faceandneck.Draw();
-    //face left
-    Point3D a(0,0,0);
-    Point3D b(-40,14,0);
-    Point3D c(-23,62,0);
-    Point3D d(0,75,0);
-    Bezier faceleft(a,b,c,d);faceleft.Draw();
-    faceleft.change(2);
-    //face right
 
-    // a.set(101,10,0);
-    // b.set(110,31,0);
-    // c.set(115,40,0);
-    // d.set(103,50,0);
+    // Point3D a(0,0,0);
+    // Point3D b(-40,14,0);
+    // Point3D c(-41,78,0);
+    // Point3D d(0,75,0);
+    
+    // Bezier faceleft(a,b,c,d);
+    
+    // faceleft.Draw();
+    // // // faceleft.change(2);
+    
+    
+    // // //face right
+    // a.set(-38,190,0);
+    // b.set(-45,56,0);
+    // c.set(51,59,0);
+    // d.set(43,190,0);
+    // Bezier chest(a,b,c,d);chest.Draw();
+    // // // chest.change(2);
+    
+    
+    // a.set(-38,190,0);
+    // b.set(-25,210,0);
+    // c.set(20,210,0);
+    // d.set(43,190,0);
+    // Bezier belt(a,b,c,d);belt.Draw();
+    // // // belt.change(2);
+
+    // a.set(27,223,0);
+    // b.set(25,239,0);
+    // c.set(-12,280,0);
+    // d.set(-40,330,0);
+    // Bezier legleftright(a,b,c,d);legleftright.Draw();
+    // // // legleftright.change(2);
+
+    // a.set(-35,190,0);
+    // b.set(-40,210,0);
+    // c.set(-57,280,0);
+    // d.set(-68,319,0);
+    // Bezier legleftleft(a,b,c,d);legleftleft.Draw();
+    // // // legleftleft.change(2);
+
+    // a.set(43,190,0);
+    // b.set(52,262,0);
+    // c.set(59,302,0);
+    // d.set(67,333,0);
+    // Bezier legrightright(a,b,c,d);legrightright.Draw();
+    // // // legrightright.change(2);
+
+
+    // a.set(6,259,0);
+    // b.set(52,341,0);
+    // c.set(23,302,0);
+    // d.set(40,333,0);
+    // Bezier legrightleft(a,b,c,d);
+    // legrightleft.Draw();
+    
+
+    // a.set(0,0,0);
+    // b.set(47,9,0);
+    // c.set(34,83,0);
+    // d.set(0,75,0);
     // Bezier faceright(a,b,c,d);faceright.Draw();
-    // faceright.change(2);
+    // // faceright.change(2);
+
+    // a.set(10,10,0);
+    // b.set(47,9,0);
+    // c.set(34,83,0);
+    // d.set(10,10,0);
+    // Bezier hand(a,b,c,d);hand.Draw();
+    // hand.change(2);
+
+    Point3D s1(10,10,0);
+    Point3D s1_(350,50,0);
+    Point3D s2(10,150,0);
+    Point3D s2_(150,30,0);
+
+    draw_herm(s1,s1_,s2,s2_);
+
+
     delay(2000);
     getch();
 }
